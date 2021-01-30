@@ -7,6 +7,7 @@
     <span v-for="tag in post.tags" :key="tag">
       #{{ tag }}
     </span>
+    <small>Created At: {{date}}</small>
   </div>
 </template>
 
@@ -15,10 +16,17 @@ import { computed } from 'vue'
 export default {
   props: ['post'],
   setup(props) {
+    
     const snippet = computed(() => {
       return props.post.body.substring(0, 100) + '...'
     })
-    return { snippet }
+    const date=computed(()=>{
+      const timestamp=props.post.createdAt.seconds
+      const theDate = new Date(timestamp * 1000);
+      const dateString = theDate.toGMTString();
+      return dateString
+    })
+    return { snippet,date }
   }
 }
 </script>
@@ -48,5 +56,9 @@ export default {
     padding-right: 40px;
     left: -30px;
     transform: rotateZ(-1deg);
+  }
+  small{
+    display: block;
+    margin: 20px auto;
   }
 </style>

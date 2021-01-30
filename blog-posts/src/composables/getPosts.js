@@ -6,7 +6,10 @@ const getPosts = () => {
 
   const load = async () => {
     try {
-      const res = await projectFirestore.collection('posts').get();
+      const res = await projectFirestore
+        .collection('posts')
+        .orderBy('createdAt', 'desc')
+        .get();
       posts.value = res.docs.map(doc => {
         return { id: doc.id, ...doc.data() };
       });
