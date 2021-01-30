@@ -17,10 +17,9 @@ const getPost = id => {
       }
 
       post.value = { id, ...res.data() };
-      console.log(post.value);
     } catch (err) {
       error.value = err.message;
-      console.log(error.value);
+      console.error(error.value);
     }
   };
 

@@ -12,7 +12,7 @@ const getPosts = () => {
       });
     } catch (err) {
       error.value = err.message;
-      console.log(error.value);
+      console.error(error.value);
     }
   };
 
